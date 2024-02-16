@@ -3,6 +3,9 @@ import { CartItem, Category, Product } from "./types";
 import { TabsContainer } from "./components/TabsContainer";
 import { useCategoryStorage } from "./storage/useCategoryStorage";
 import { useProductStorage } from "./storage/useProductStorage";
+import { Cart } from "./components/Cart";
+import { CreateProduct } from "./components/CreateProduct";
+import { CreateCategory } from "./components/CreateCategory";
 
 // ```Desenvolver uma aplicação de e-commerce simplificada utilizando React,
 // onde o componente principal gerencia o estado de produtos,
@@ -74,12 +77,16 @@ import { useProductStorage } from "./storage/useProductStorage";
 // ```Cada componente deve ficar separado em seu próprio arquivo.```
 
 function App() {
-	const [carrinhoDeProdutos, setCarrinhoDeProdutos] = useState<CartItem[]>([]);
 	const { categories } = useCategoryStorage();
 	const { products } = useProductStorage();
 
 	return (
 		<div>
+			<div className="flex justify-between p-2">
+				<CreateProduct />
+				<CreateCategory />
+				<Cart />
+			</div>
 			<TabsContainer categories={categories} products={products} />
 		</div>
 	);

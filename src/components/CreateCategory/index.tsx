@@ -21,7 +21,7 @@ const CreateCategory = () => {
 	console.log(categories);
 
 	return (
-		<div className="p-8">
+		<div>
 			<Dialog>
 				<DialogTrigger className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer">
 					Criar nova categoria
@@ -36,7 +36,6 @@ const CreateCategory = () => {
 								type="text"
 								placeholder="Name"
 							/>
-
 							<button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer">
 								Confirmar
 							</button>

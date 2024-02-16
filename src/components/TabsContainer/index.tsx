@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { ProductCard } from "../ProductCard";
 import { Category, Product } from "../../types";
-import { CreateProduct } from "../CreateProduct";
-import { CreateCategory } from "../CreateCategory";
 
 interface ITabContainerProps {
 	categories: Category[];
@@ -20,10 +18,6 @@ const TabsContainer = ({ categories, products }: ITabContainerProps) => {
 
 	return (
 		<div>
-			<div className="flex">
-				<CreateProduct />
-				<CreateCategory />
-			</div>
 			<ul className="flex justify-between text-5xl">
 				{categories.map((category) => (
 					<li
@@ -36,7 +30,14 @@ const TabsContainer = ({ categories, products }: ITabContainerProps) => {
 				))}
 			</ul>
 			{productsToShow.map((product) => (
-				<ProductCard key={product.id} name={product.name} price={product.price} description={product.description} />
+				<ProductCard
+					key={product.id}
+					id={product.id}
+					categoryId={product.categoryId}
+					name={product.name}
+					price={product.price}
+					description={product.description}
+				/>
 			))}
 		</div>
 	);
