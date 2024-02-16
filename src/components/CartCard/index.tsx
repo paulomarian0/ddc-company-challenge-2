@@ -19,18 +19,29 @@ const CartCard = ({ id, name, price, description, quantity, total }: ICartCardPr
 	};
 
 	return (
-		<div>
-			<h3 className="text-xl font-bold">{name}</h3>
-			<p className="text-gray-600">Preço: R${price}</p>
-			<p className="text-gray-600">Descrição: {description}</p>
-			<p>quantidade: {quantity}</p>
-			<p>total: {total}</p>
-			<button className="text-red-300" onClick={() => handleAddToCart(id)}>
-				+
-			</button>
-			<button className="text-red-300" onClick={() => removeQuantity(id)}>
-				-
-			</button>
+		<div className="border rounded-md p-4 mb-4">
+			<h3 className="text-xl font-bold mb-2">{name}</h3>
+			<p className="text-gray-600 mb-2">Preço: R${price.toFixed(2)}</p>
+			<p className="text-gray-600 mb-2">Descrição: {description}</p>
+			<div className="flex items-center mb-2">
+				<p className="mr-2">Quantidade:</p>
+				<p className="font-semibold">{quantity}</p>
+			</div>
+			<div className="flex items-center mb-4">
+				<p className="mr-2">Total:</p>
+				<p className="font-semibold">R${total.toFixed(2)}</p>
+			</div>
+			<div className="flex gap-4">
+				<button
+					className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+					onClick={() => handleAddToCart(id)}
+				>
+					+
+				</button>
+				<button className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" onClick={() => removeQuantity(id)}>
+					-
+				</button>
+			</div>
 		</div>
 	);
 };

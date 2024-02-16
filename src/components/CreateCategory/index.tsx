@@ -18,7 +18,7 @@ const CreateCategory = () => {
 
 		const id = categories.length + 1;
 		addCategory({
-			id,
+			id: Number(id),
 			name,
 		});
 	};
@@ -33,7 +33,9 @@ const CreateCategory = () => {
 					<DialogHeader>
 						<DialogTitle className="text-lg font-semibold">Preencha com o nome da nova categoria</DialogTitle>
 						<form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
-							<label htmlFor="name">Nome</label>
+							<label htmlFor="name" className="block mb-2">
+								Nome
+							</label>
 							<input
 								{...register("name")}
 								className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"

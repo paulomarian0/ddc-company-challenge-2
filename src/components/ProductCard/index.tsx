@@ -26,14 +26,16 @@ const ProductCard = ({ id, categoryId, name, price, description }: IProductCardP
 	};
 
 	return (
-		<div className="bg-gray-200 p-4 rounded my-6">
-			<h3 className="text-xl font-bold">{name}</h3>
-			<p className="text-gray-600">Preço: R${price}</p>
-			<p className="text-gray-600">Descrição: {description}</p>
+		<div className="bg-gray-200 p-4 rounded my-6 w-full">
+			<h3 className="text-xl font-bold mb-2">{name}</h3>
+			<p className="text-gray-600 mb-2">
+				Preço: {price.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}
+			</p>
+			<p className="text-gray-600 mb-4">Descrição: {description}</p>
 
 			<button
 				onClick={() => handleAddToCart({ id, categoryId, name, price, description } as Product)}
-				className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer mt-4"
+				className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
 			>
 				Adicionar ao carrinho
 			</button>

@@ -81,8 +81,8 @@ function App() {
 	const { products } = useProductStorage();
 
 	return (
-		<div>
-			<div className="flex justify-between p-2">
+		<div className="container mx-auto px-4">
+			<div className="flex justify-between items-center p-4">
 				<CreateProduct />
 				<CreateCategory />
 				<Cart />
