@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { CartItem, Category, Product } from "./types";
 import { TabsContainer } from "./components/TabsContainer";
+import { useCategoryStorage } from "./storage/useCategoryStorage";
+import { useProductStorage } from "./storage/useProductStorage";
 
 // ```Desenvolver uma aplicação de e-commerce simplificada utilizando React,
 // onde o componente principal gerencia o estado de produtos,
@@ -72,41 +74,9 @@ import { TabsContainer } from "./components/TabsContainer";
 // ```Cada componente deve ficar separado em seu próprio arquivo.```
 
 function App() {
-	const [categories, setCategories] = useState<Category[]>([
-		{ id: 1, name: "Eletrônicos" },
-		{ id: 2, name: "Livros" },
-		{ id: 3, name: "Casa" },
-		// Adicione mais categorias conforme necessário
-	]);
-
-	const [products, setProducts] = useState<Product[]>([
-		{
-			id: 1,
-			categoryId: 1,
-			name: "Notebook",
-			price: 3000,
-			description: "Notebook XYZ, tela 15 polegadas",
-		},
-		{
-			id: 2,
-			categoryId: 2,
-			name: "Livro de TypeScript",
-			price: 120,
-			description: "Aprenda TypeScript do básico ao avançado",
-		},
-		{
-			id: 3,
-			categoryId: 3,
-			name: "Cadeira Gamer",
-			price: 1500,
-			description: "Cadeira gamer confortável",
-		},
-		// Adicione mais produtos conforme necessário
-	]);
-
 	const [carrinhoDeProdutos, setCarrinhoDeProdutos] = useState<CartItem[]>([]);
-
-	// Renderização e lógica adicionais aqui
+	const { categories } = useCategoryStorage();
+	const { products } = useProductStorage();
 
 	return (
 		<div>
