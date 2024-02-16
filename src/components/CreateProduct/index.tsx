@@ -9,6 +9,7 @@ type FormValues = {
 	description: string;
 	categoryId: number;
 };
+
 const CreateProduct = () => {
 	const { register, handleSubmit } = useForm<FormValues>();
 	const { categories } = useCategoryStorage();
@@ -30,30 +31,31 @@ const CreateProduct = () => {
 		<div>
 			<Dialog>
 				<DialogTrigger className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer">
-					Cariar ovo produto
+					Criar novo produto
 				</DialogTrigger>
 				<DialogContent>
 					<DialogHeader>
-						<DialogTitle className="text-lg font-semibold">Are you absolutely sure?</DialogTitle>
+						<DialogTitle className="text-lg font-semibold">Preencha com os dados do novo produto</DialogTitle>
 						<form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
+							<label htmlFor="name">Nome</label>
 							<input
 								{...register("name")}
 								className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
 								type="text"
-								placeholder="Name"
 							/>
+							<label htmlFor="price">Preço</label>
 							<input
 								{...register("price")}
 								className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
 								type="number"
-								placeholder="Price"
 							/>
+							<label htmlFor="description">Descrição</label>
 							<input
 								{...register("description")}
 								className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
 								type="text"
-								placeholder="Description"
 							/>
+							<label htmlFor="category">Selecione a categoria</label>
 							<select {...register("categoryId")} className="border border-gray-300 rounded px-4 py-2 mb-4 w-full">
 								{categories.map((category) => (
 									<option key={category.id} value={category.id}>
@@ -61,7 +63,6 @@ const CreateProduct = () => {
 									</option>
 								))}
 							</select>
-
 							<button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer">
 								Confirmar
 							</button>

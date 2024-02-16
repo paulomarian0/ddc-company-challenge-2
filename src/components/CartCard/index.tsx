@@ -1,5 +1,4 @@
 import { useCartStorage } from "@/storage/useCartStorage";
-import { Product } from "@/types";
 
 interface ICartCardProps {
 	id: number;
