@@ -63,11 +63,7 @@ const CreateProduct = () => {
 							<label htmlFor="description" className="block mb-2">
 								Descrição
 							</label>
-							<input
-								{...register("description")}
-								className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
-								type="text"
-							/>
+							<textarea {...register("description")} className="border border-gray-300 rounded px-4 py-2 mb-4 w-full" />
 							<label htmlFor="category" className="block mb-2">
 								Selecione a categoria
 							</label>

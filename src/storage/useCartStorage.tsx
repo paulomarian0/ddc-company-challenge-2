@@ -12,6 +12,7 @@ interface ICartStorage {
 	clearCart: () => void;
 	addQuantity: (id: number) => void;
 	removeQuantity: (id: number) => void;
+	removeItem: (id: number) => void;
 }
 
 const useCartStorage = create<ICartStorage>((set) => ({
@@ -50,6 +51,11 @@ const useCartStorage = create<ICartStorage>((set) => ({
 				return item;
 			});
 
+			return { cartList: updatedCart };
+		}),
+	removeItem: (id: number) =>
+		set((state) => {
+			const updatedCart = state.cartList.filter((item) => item.id !== id);
 			return { cartList: updatedCart };
 		}),
 }));

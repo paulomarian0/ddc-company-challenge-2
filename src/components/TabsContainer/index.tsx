@@ -43,6 +43,10 @@ const TabsContainer = ({ categories, products }: ITabContainerProps) => {
 				</ul>
 			</div>
 
+			{productsToShow.length === 0 && (
+				<p className="text-center text-2xl mt-4">Não há produtos disponíveis para a categoria selecionada!</p>
+			)}
+
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
 				{productsToShow.map((product) => (
 					<ProductCard
