@@ -3,6 +3,7 @@ import { useCategoryStorage } from "../../storage/useCategoryStorage";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useProductStorage } from "@/storage/useProductStorage";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { toast } from "sonner";
 
 type FormValues = {
 	name: string;
@@ -17,11 +18,13 @@ const CreateProduct = () => {
 	const { addProduct, products } = useProductStorage();
 
 	const onSubmit = ({ categoryId, name, price, description }: FormValues) => {
+		if (!categoryId || !name || !price || !description) return;
+
 		const id = products.length + 1;
 		const haveProductWithSameName = products.some((product) => product.name === name);
 
 		if (haveProductWithSameName) {
-			return;
+			return toast.error("Já existe um produto com esse nome");
 		}
 
 		addProduct({
@@ -31,6 +34,8 @@ const CreateProduct = () => {
 			price: Number(price),
 			description,
 		});
+
+		toast.success("Novo produto criado com sucesso");
 		reset();
 	};
 

@@ -4,6 +4,7 @@ import { Product } from "../types";
 interface IProductStorage {
 	products: Product[];
 	addProduct: (product: Product) => void;
+	removeProduct: (id: number) => void;
 }
 
 const useProductStorage = create<IProductStorage>((set) => ({
@@ -31,6 +32,7 @@ const useProductStorage = create<IProductStorage>((set) => ({
 		},
 	],
 	addProduct: (product) => set((state) => ({ products: [...state.products, product] })),
+	removeProduct: (id: number) => set((state) => ({ products: state.products.filter((product) => product.id !== id) })),
 }));
 
 export { useProductStorage };

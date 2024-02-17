@@ -27,10 +27,9 @@ const Cart = () => {
 					<div className="max-h-96 overflow-auto">
 						{cartList.length === 0 && <p className="text-center text-2xl">Seu carrinho está vazio!</p>}
 						{cartList.map((item) => (
-							<div className="px-4">
+							<div className="px-4" key={item.id}>
 								<CartCard
 									id={item.id}
-									key={item.id}
 									name={item.name}
 									price={item.price}
 									description={item.description}

@@ -1,19 +1,22 @@
 import { useForm } from "react-hook-form";
 import { useCategoryStorage } from "../../storage/useCategoryStorage";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 type FormValues = {
 	name: string;
 };
 
 const CreateCategory = () => {
-	const { register, handleSubmit } = useForm<FormValues>();
+	const { register, handleSubmit, reset } = useForm<FormValues>();
 	const { addCategory, categories } = useCategoryStorage();
 
 	const onSubmit = ({ name }: FormValues) => {
+		if (!name) return;
+
 		const haveCategoryWithSameName = categories.some((category) => category.name === name);
 		if (haveCategoryWithSameName) {
-			return;
+			return toast.error("Já existe uma categoria com esse nome");
 		}
 
 		const id = categories.length + 1;
@@ -21,6 +24,9 @@ const CreateCategory = () => {
 			id: Number(id),
 			name,
 		});
+
+		toast.success("Nova categoria criada com sucesso");
+		reset();
 	};
 
 	return (
@@ -41,9 +47,11 @@ const CreateCategory = () => {
 								className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
 								type="text"
 							/>
-							<button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer">
-								Confirmar
-							</button>
+							<DialogClose>
+								<button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer">
+									Confirmar
+								</button>
+							</DialogClose>
 						</form>
 					</DialogHeader>
 				</DialogContent>
